@@ -1,3 +1,3 @@
 # Internal Patching Ballistic Missile
 
-Nuke a memory address with an infinite loop to cause a poor man's breakpoint.
+Nuke a memory address in a Nintendo 3DS code.bin to cause a poor man's breakpoint.
