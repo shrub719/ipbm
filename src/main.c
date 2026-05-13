@@ -4,9 +4,9 @@
 
 #define OUTPUT "code.ips"
 
-void writeInt(long n, size_t len, FILE *fptr) {
+void writeBytes(long bytes, size_t len, FILE *fptr) {
     while (len > 0) {
-        unsigned char byte = (n >> (len - 1) * 8) % 0x100;
+        unsigned char byte = (bytes >> (len - 1) * 8) % 0x100;
         fwrite(&byte, 1, 1, fptr);
         len--;
     }
@@ -17,11 +17,20 @@ void nuke(long offset) {
 
     fwrite("PATCH", 1, 5, fptr);
 
-    writeInt(offset, 3, fptr);
-    writeInt(0x4, 2, fptr);
+    writeBytes(offset, 3, fptr);
+    writeBytes(0x4, 2, fptr);
 
+    // I HAVE YET to discover what instruction/s make the emulator
+    //   for sure crash or stop. none of these work
+    //
     // bkpt instruction
-    writeInt(0x700020e1, 4, fptr);
+    // writeBytes(0x700020e1, 4, fptr);
+    //
+    // garbage
+    writeBytes(0xdeadbeef, 4, fptr);
+    //
+    // wait for interrupt
+    // writeBytes(0x03f020e3, 4, fptr);
 
     fwrite("EOF", 1, 3, fptr);
 
