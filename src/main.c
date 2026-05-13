@@ -6,7 +6,7 @@
 
 void writeInt(long n, size_t len, FILE *fptr) {
     while (len > 0) {
-        unsigned char byte = (n >> (len - 1)) % 0x100;
+        unsigned char byte = (n >> (len - 1) * 8) % 0x100;
         fwrite(&byte, 1, 1, fptr);
         len--;
     }

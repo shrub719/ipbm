@@ -6,4 +6,5 @@ build:
 [default]
 test address="10": build
     ./target/{{name}} {{address}}
+    hexdump -C code.ips
 
