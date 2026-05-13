@@ -18,19 +18,19 @@ void nuke(long offset) {
     fwrite("PATCH", 1, 5, fptr);
 
     writeBytes(offset, 3, fptr);
-    writeBytes(0x4, 2, fptr);
+    writeBytes(0x8, 2, fptr);
 
     // I HAVE YET to discover what instruction/s make the emulator
     //   for sure crash or stop. none of these work
     //
-    // bkpt instruction
-    // writeBytes(0x700020e1, 4, fptr);
-    //
-    // garbage
-    writeBytes(0xdeadbeef, 4, fptr);
-    //
-    // wait for interrupt
-    // writeBytes(0x03f020e3, 4, fptr);
+    //  garbage
+    // writeBytes(0xdeadbeef, 4, fptr);
+    //  nop
+    // writeBytes(0x00f020e3, 4, fptr);
+    //  just go back
+    // writeBytes(0x1eff2fe1, 4, fptr);
+    //  loop
+    writeBytes(0x00f020e3fdffffea, 8, fptr);
 
     fwrite("EOF", 1, 3, fptr);
 
