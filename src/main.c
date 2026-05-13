@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
         strcpy(modeName, "nop");
         mode = 2;
     } else {
-        printf("%c is not a valid mode", modeChar);
+        printf("%c is not a valid mode\n", modeChar);
         return 1;
     }
 
