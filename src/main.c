@@ -18,7 +18,7 @@ void nuke(long offset) {
     fwrite("PATCH", 1, 5, fptr);
 
     writeInt(offset, 3, fptr);
-    writeInt(0x1, 2, fptr);
+    writeInt(0x4, 2, fptr);
 
     // bkpt instruction
     writeInt(0x700020e1, 4, fptr);
